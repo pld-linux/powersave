@@ -46,6 +46,7 @@ Biblioteki powersave.
 Summary:	Header files for powersave library
 Summary(pl):	Pliki nag³ówkowe biblioteki powersave
 Group:		Development/Libraries
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 This is the package containing header files for powersave
@@ -82,12 +83,12 @@ sed -i -e 's|translations||' Makefile.am
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_sysconfdir}/init.d
+rm -rf $RPM_BUILD_ROOT/etc/init.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -109,8 +110,8 @@ fi
 %defattr(644,root,root,755)
 %doc BUGS README
 
-%dir %{_sysconfdir}/sysconfig/powersave
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/sysconfig/powersave/*
+%dir /etc/sysconfig/powersave
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersave/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
 
 %dir %{_sysconfdir}/acpi/events.ignore
@@ -131,9 +132,9 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/*.h
+%attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/*.so
+%{_includedir}/*.h
 
 %files static
 %defattr(644,root,root,755)
