@@ -137,9 +137,3 @@ fi
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/*.a
-
-# initscript and its config
-%if %{with initscript}
-%attr(754,root,root) /etc/rc.d/init.d/%{name}
-%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
-%endif
