@@ -17,6 +17,7 @@ BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
+Requires:	hal >= 0.5.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -81,6 +82,7 @@ sed -i -e 's|translations||' Makefile.am
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -114,15 +116,14 @@ fi
 %dir %{_sysconfdir}/acpi/events.ignore
 %{_sysconfdir}/acpi/events.ignore/events.ignore
 
-#%%attr(754,root,root) /etc/rc.d/init.d/powersaved
+#%%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/powersaved
 
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/powersaved
 %dir %{_libdir}/powersave
 %dir %{_libdir}/powersave/scripts
-%attr(755,root,root) %{_libdir}/powersave/scripts/*
 %attr(755,root,root) %{_libdir}/powersave/do_*
-%{_includedir}/*.h
-%{_sbindir}/powersaved
+%attr(755,root,root) %{_libdir}/powersave/scripts/*
 
 %files libs
 %defattr(644,root,root,755)
@@ -131,8 +132,8 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*.h
-%{_libdir}/*.so
 %{_libdir}/*.la
+%{_libdir}/*.so
 
 %files static
 %defattr(644,root,root,755)
