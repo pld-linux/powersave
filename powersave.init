@@ -1,12 +1,12 @@
 #!/bin/sh
 #
-# powersaved		Starts the powersave daemon
+# powersave		Starts the powersave daemon
 #
 # chkconfig:	345 45 55
 # description:	Optimises power consumption, specially for laptops
 # processname:	powersaved
 #
-# pidfile:	/var/run/powersaved.pid
+# pidfile:	/var/run/powersave.pid
 
 # Source function library.
 . /etc/rc.d/init.d/functions
@@ -14,40 +14,40 @@
 # Configuration file.
 . /etc/sysconfig/powersaved
 
-ACPI_EVENT_FILE="/proc/acpi/event"
+ACPI_EVENT_FILE="/var/run/acpid.socket"
 
 RETVAL=0
 # See how we were called.
 case "$1" in
   start)
 	# Start daemons.
-	if [ ! -f /var/lock/subsys/powersaved ]; then
+	if [ ! -f /var/lock/subsys/powersave ]; then
 		# starting:
-		msg_starting powersaved 
-		daemon powersaved -d $ACPI_EVENT_FILE $PROGRAM_ARGS
+		msg_starting powersave
+		daemon powersaved -d -f $ACPI_EVENT_FILE $PROGRAM_ARGS
 		RETVAL=$?
-		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/powesaved
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/powersave
 	else
-		msg_already_running powersaved
+		msg_already_running powersave
 	fi
 	;;
   stop)
 	# Stop daemons.
-	if [ -f /var/lock/subsys/powersaved ]; then
-		msg_stopping powersaved
+	if [ -f /var/lock/subsys/powersave ]; then
+		msg_stopping powersave
 		killproc powersaved
-		rm -f /var/lock/subsys/powersaved >/dev/null 2>&1
+		rm -f /var/lock/subsys/powersave >/dev/null 2>&1
 	else
-		msg_not_running powersaved
+		msg_not_running powersave
 	fi
 	;;
   reload|force-reload)
-	if [ -f /var/lock/subsys/powersaved ]; then
-		msg_reloading powersaved
+	if [ -f /var/lock/subsys/powersave ]; then
+		msg_reloading powersave
 		killproc powersaved -HUP
 		RETVAL=$?
 	else
-		msg_not_running powersaved >&2
+		msg_not_running powersave >&2
 		exit 7
 	fi
 	;;
@@ -57,7 +57,7 @@ case "$1" in
 	exit $?
 	;;
   status)
-	status powersaved
+	status powersave
 	exit $?
 	;;
   *)
