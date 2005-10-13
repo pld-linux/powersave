@@ -8,6 +8,8 @@ License:	GPL
 Group:		Daemons
 Source0:	http://forgeftp.novell.com/powersave/powersave/0.10.10-rc/%{name}-%{version}.tar.bz2
 # Source0-md5:	170db6ee365dee08adbc5a8cb477bfc0
+Source1:	%{name}.init
+Source2:	%{name}.sysconfig
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -88,6 +90,9 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/powersave
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersave
+
 rm -rf $RPM_BUILD_ROOT/etc/init.d
 
 %clean
@@ -117,7 +122,7 @@ fi
 %dir %{_sysconfdir}/acpi/events.ignore
 %{_sysconfdir}/acpi/events.ignore/events.ignore
 
-#%%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/powersaved
+%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/powersave
 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/powersaved
