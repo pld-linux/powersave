@@ -91,7 +91,7 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/powersave
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersave
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersaved
 
 rm -rf $RPM_BUILD_ROOT/etc/init.d
 
@@ -117,6 +117,7 @@ fi
 
 %dir /etc/sysconfig/powersave
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersave/*
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersaved
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
 
 %dir %{_sysconfdir}/acpi/events.ignore

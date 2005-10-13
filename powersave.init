@@ -12,7 +12,7 @@
 . /etc/rc.d/init.d/functions
 
 # Configuration file.
-. /etc/sysconfig/powersave
+. /etc/sysconfig/powersaved
 
 ACPI_EVENT_FILE="/proc/acpi/event"
 
