@@ -122,7 +122,7 @@ fi
 %dir %{_sysconfdir}/acpi/events.ignore
 %{_sysconfdir}/acpi/events.ignore/events.ignore
 
-%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/powersave
+%attr(754,root,root) /etc/rc.d/init.d/powersave
 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/powersaved
