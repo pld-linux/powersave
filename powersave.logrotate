@@ -1,0 +1,11 @@
+/var/log/suspend2disk.log {
+	postrotate
+		/bin/killall -HUP powersaved
+	endscript
+}
+
+/var/log/suspend2ram.log {
+	postrotate
+		/bin/killall -HUP powersaved
+	endscript
+}
