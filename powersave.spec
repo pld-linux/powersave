@@ -2,7 +2,7 @@ Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
 Version:	0.10.10
-Release:	0.1
+Release:	0.2
 Epoch:		0
 License:	GPL
 Group:		Daemons
@@ -10,6 +10,7 @@ Source0:	http://forgeftp.novell.com/powersave/powersave/0.10.10-rc/%{name}-%{ver
 # Source0-md5:	170db6ee365dee08adbc5a8cb477bfc0
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+Source3:	%{name}.logrotate
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -19,7 +20,6 @@ BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
-Requires:	hal >= 0.5.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -85,13 +85,15 @@ sed -i -e 's|translations||' Makefile.am
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d \
+	$RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/powersave
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersaved
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/powersave
 
 rm -rf $RPM_BUILD_ROOT/etc/init.d
 
@@ -116,12 +118,14 @@ fi
 %doc BUGS README
 
 %dir /etc/sysconfig/powersave
-%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersave/*
+/etc/sysconfig/powersave/*
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersaved
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
 
 %dir %{_sysconfdir}/acpi/events.ignore
 %{_sysconfdir}/acpi/events.ignore/events.ignore
+
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/powersave
 
 %attr(754,root,root) /etc/rc.d/init.d/powersave
 
