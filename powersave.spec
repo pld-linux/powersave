@@ -1,13 +1,13 @@
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.10.10
-Release:	0.2
+Version:	0.10.19
+Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Daemons
-Source0:	http://forgeftp.novell.com/powersave/powersave/0.10.10-rc/%{name}-%{version}.tar.bz2
-# Source0-md5:	170db6ee365dee08adbc5a8cb477bfc0
+Source0:	http://forgeftp.novell.com//powersave/powersave/0.10.19-unstable/%{name}-%{version}.tar.bz2
+# Source0-md5:	bd81258d5b00601469a0e9ff7d4a4b29
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
@@ -85,7 +85,7 @@ sed -i -e 's|translations||' Makefile.am
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d \
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig} \
 	$RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
 
 %{__make} install \
@@ -115,10 +115,10 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS README
+%doc README docs/README.*
 
-%dir /etc/sysconfig/powersave
-/etc/sysconfig/powersave/*
+%dir %{_sysconfdir}/powersave
+%{_sysconfdir}/powersave/*
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersaved
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
 
@@ -126,7 +126,6 @@ fi
 %{_sysconfdir}/acpi/events.ignore/events.ignore
 
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/powersave
-
 %attr(754,root,root) /etc/rc.d/init.d/powersave
 
 %attr(755,root,root) %{_bindir}/*
@@ -135,6 +134,8 @@ fi
 %dir %{_libdir}/powersave/scripts
 %attr(755,root,root) %{_libdir}/powersave/do_*
 %attr(755,root,root) %{_libdir}/powersave/scripts/*
+
+%{_mandir}/man8/powersave*.8*
 
 %files libs
 %defattr(644,root,root,755)
