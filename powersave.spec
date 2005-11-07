@@ -15,6 +15,7 @@ URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	hal-devel
+BuildRequires:	dbus-glib-devel
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
