@@ -1,13 +1,13 @@
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.10.19
+Version:	0.11.0
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Daemons
-Source0:	http://forgeftp.novell.com//powersave/powersave/0.10.19-unstable/%{name}-%{version}.tar.bz2
-# Source0-md5:	bd81258d5b00601469a0e9ff7d4a4b29
+Source0:	http://forgeftp.novell.com//powersave/powersave/0.11.0-unstable/%{name}-%{version}.tar.bz2
+# Source0-md5:	588bd1468a63c0218e9c3b1197c330a8
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
@@ -21,6 +21,7 @@ BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
+Requires:	hal
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -134,6 +135,8 @@ fi
 %dir %{_libdir}/powersave
 %dir %{_libdir}/powersave/scripts
 %attr(755,root,root) %{_libdir}/powersave/do_*
+%attr(755,root,root) %{_libdir}/powersave/powersaved_script_return
+%attr(755,root,root) %{_libdir}/powersave/wttyhx
 %attr(755,root,root) %{_libdir}/powersave/scripts/*
 
 %{_mandir}/man8/powersave*.8*
