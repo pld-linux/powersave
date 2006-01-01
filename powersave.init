@@ -14,12 +14,23 @@
 # Configuration file.
 . /etc/sysconfig/powersaved
 
+# Additional configs
+. /etc/powersave/common
+. /etc/powersave/cpufreq
+. /etc/powersave/thermal
+
 ACPI_EVENT_FILE="/var/run/acpid.socket"
 
 RETVAL=0
 # See how we were called.
 case "$1" in
   start)
+	# Load additional modules:
+        if [ -n "$LAPTOP_MODULES" ]; then
+            for i in $LAPTOP_MODULES; do
+                _modprobe single $i
+                done
+        fi
 	# Start daemons.
 	if [ ! -f /var/lock/subsys/powersave ]; then
 		# starting:
