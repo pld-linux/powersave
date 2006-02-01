@@ -1,21 +1,22 @@
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.11.0
+Version:	0.11.5
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Daemons
-Source0:	http://forgeftp.novell.com//powersave/powersave/0.11.0-unstable/%{name}-%{version}.tar.bz2
-# Source0-md5:	588bd1468a63c0218e9c3b1197c330a8
+Source0:	http://forgeftp.novell.com//powersave/powersave/0.11.5-unstable/%{name}-%{version}.tar.bz2
+# Source0-md5:	8aaf60a5de75f995bce9eb928cf67fc2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	hal-devel
+BuildRequires:	cpufrequtils-devel
 BuildRequires:	dbus-glib-devel
+BuildRequires:	hal-devel
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
@@ -82,7 +83,9 @@ sed -i -e 's|translations||' Makefile.am
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--with-gnome-bindir=%{_prefix} \
+	--with-kde-bindir=%{_prefix}
 %{__make}
 
 %install
@@ -135,9 +138,9 @@ fi
 %dir %{_libdir}/powersave
 %dir %{_libdir}/powersave/scripts
 %attr(755,root,root) %{_libdir}/powersave/do_*
-%attr(755,root,root) %{_libdir}/powersave/powersaved_script_return
-%attr(755,root,root) %{_libdir}/powersave/wttyhx
 %attr(755,root,root) %{_libdir}/powersave/scripts/*
+%attr(755,root,root) %{_libdir}/powersave/setDefaultTrippoints.sh
+%attr(755,root,root) %{_libdir}/powersave/wttyhx
 
 %{_mandir}/man8/powersave*.8*
 
