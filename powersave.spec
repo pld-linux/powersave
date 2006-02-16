@@ -14,6 +14,7 @@ Source3:	%{name}.logrotate
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	sysfsutils-devel
 BuildRequires:	cpufrequtils-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	hal-devel
