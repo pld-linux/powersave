@@ -17,6 +17,7 @@ BuildRequires:	automake
 BuildRequires:	sysfsutils-devel
 BuildRequires:	cpufrequtils-devel
 BuildRequires:	dbus-glib-devel
+BuildRequires:	dbus-qt-devel
 BuildRequires:	hal-devel
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.228
