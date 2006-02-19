@@ -14,17 +14,18 @@ Source3:	%{name}.logrotate
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	sysfsutils-devel
-BuildRequires:	cpufrequtils-devel
-BuildRequires:	dbus-glib-devel
-BuildRequires:	dbus-qt-devel
-BuildRequires:	hal-devel
+BuildRequires:	sysfsutils-devel >= 1.3.0-3
+BuildRequires:	cpufrequtils-devel >= 0.4
+BuildRequires:	dbus-glib-devel >= 0.30
+BuildRequires:	dbus-qt-devel >= 0.30
+BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
-Requires:	hal
+Requires:	hal >= 0.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,6 +55,10 @@ Summary:	Header files for powersave library
 Summary(pl):	Pliki nag³ówkowe biblioteki powersave
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	cpufrequtils-devel >= 0.4
+Requires:	dbus-devel >= 0.30
+Requires:	hal-devel >= 0.5.0
+Requires:	sysfsutils-devel >= 1.3.0-3
 
 %description devel
 This is the package containing header files for powersave
