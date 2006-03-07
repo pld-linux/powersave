@@ -1,13 +1,13 @@
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.11.5
+Version:	0.12.2
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Daemons
-Source0:	http://forgeftp.novell.com//powersave/powersave/0.11.5-unstable/%{name}-%{version}.tar.bz2
-# Source0-md5:	8aaf60a5de75f995bce9eb928cf67fc2
+Source0:	http://dl.sourceforge.net/sourceforge/powersave/%{name}-%{version}.tar.bz2
+# Source0-md5:	22086754819893175e4c7a5a3c0e10c8
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
@@ -148,7 +148,7 @@ fi
 %attr(755,root,root) %{_libdir}/powersave/scripts/*
 %attr(755,root,root) %{_libdir}/powersave/setDefaultTrippoints.sh
 %attr(755,root,root) %{_libdir}/powersave/wttyhx
-
+%attr(755,root,root) %{_libdir}/powersave/myecho
 %{_mandir}/man8/powersave*.8*
 
 %files libs
@@ -160,6 +160,7 @@ fi
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/*.h
+%{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
