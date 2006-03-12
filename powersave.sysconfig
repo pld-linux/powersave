@@ -1,7 +1,0 @@
-# Customized settings for powersave
-
-# Define nice level for powersave:
-SERVICE_RUN_NICE_LEVEL="+0"
-
-# Program arguments:
-PROGRAM_ARGS=""
