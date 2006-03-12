@@ -1,8 +1,12 @@
+# 
+# TODO:
+# - fix bashizms in po/Makefile.am
+#
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
 Version:	0.12.2
-Release:	0.1
+Release:	1
 Epoch:		0
 License:	GPL
 Group:		Daemons
@@ -11,10 +15,10 @@ Source0:	http://dl.sourceforge.net/sourceforge/powersave/%{name}-%{version}.tar.
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
+Patch0:		%{name}-ipw2200.patch
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	sysfsutils-devel >= 1.3.0-3
 BuildRequires:	cpufrequtils-devel >= 0.4
 BuildRequires:	dbus-glib-devel >= 0.30
 BuildRequires:	dbus-qt-devel >= 0.30
@@ -22,6 +26,7 @@ BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
+BuildRequires:	sysfsutils-devel >= 1.3.0-3
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
@@ -81,7 +86,8 @@ Statyczne biblioteki powersave.
 
 %prep
 %setup -q
-# translations disabled (terrible mess)
+%patch0 -p1
+# translations disabled (terrible mess, see TODO)
 sed -i -e 's|translations||' Makefile.am
 
 %build
