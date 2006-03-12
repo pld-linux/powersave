@@ -1,16 +1,8 @@
-/var/log/standby.log {
-	postrotate
-		/bin/killall -HUP powersaved
-	endscript
-}
-
-/var/log/suspend2disk.log {
-	postrotate
-		/bin/killall -HUP powersaved
-	endscript
-}
-
-/var/log/suspend2ram.log {
+/var/log/standby.log
+/var/log/suspend2disk.log
+/var/log/suspend2ram.log
+{
+    sharedscripts
 	postrotate
 		/bin/killall -HUP powersaved
 	endscript
