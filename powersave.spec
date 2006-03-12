@@ -137,7 +137,7 @@ fi
 %doc README docs/README.*
 
 %dir %{_sysconfdir}/powersave
-%{_sysconfdir}/powersave/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/powersave/*
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersaved
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
 
