@@ -27,7 +27,7 @@ RETVAL=0
 case "$1" in
   start)
 	# Load default cpufreq module
-	if is_yes "$CPUFREQ_ENABLED" then;
+	if is_yes "$CPUFREQ_ENABLED"; then
 	    if [ -n "$CPUFREQD_MODULE" ]; then
             	    _modprobe $i $CPUFREQD_MODULE_OPTS
 		    # Load available governors
