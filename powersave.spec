@@ -1,6 +1,7 @@
 # 
 # TODO:
 # - fix bashizms in po/Makefile.am
+# - do something with contrib scripts
 #
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
