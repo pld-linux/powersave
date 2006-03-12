@@ -1,3 +1,9 @@
+/var/log/standby.log {
+	postrotate
+		/bin/killall -HUP powersaved
+	endscript
+}
+
 /var/log/suspend2disk.log {
 	postrotate
 		/bin/killall -HUP powersaved
