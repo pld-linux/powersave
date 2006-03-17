@@ -22,7 +22,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel >= 0.4
 BuildRequires:	dbus-glib-devel >= 0.30
-BuildRequires:	dbus-qt-devel >= 0.30
 BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
