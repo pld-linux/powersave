@@ -6,13 +6,13 @@
 Summary:	Powermanagment deamon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.12.2
+Version:	0.13.0
 Release:	1
 Epoch:		0
 License:	GPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/sourceforge/powersave/%{name}-%{version}.tar.bz2
-# Source0-md5:	22086754819893175e4c7a5a3c0e10c8
+# Source0-md5:	7cb45b9a0a5a3f44217bb901cd9c5189
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
