@@ -3,7 +3,7 @@
 # - fix bashizms in po/Makefile.am
 # - do something with contrib scripts
 #
-Summary:	Powermanagment deamon
+Summary:	Powermanagment daemon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
 Version:	0.13.0
