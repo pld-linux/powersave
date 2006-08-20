@@ -6,13 +6,13 @@
 Summary:	Powermanagment daemon
 Summary(pl):	Demon zarz±dzania energi±
 Name:		powersave
-Version:	0.13.0
+Version:	0.13.5
 Release:	1
 Epoch:		0
 License:	GPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/sourceforge/powersave/%{name}-%{version}.tar.bz2
-# Source0-md5:	7cb45b9a0a5a3f44217bb901cd9c5189
+# Source0-md5:	ed5bc24783af5f16d057fdd2727f1921
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
@@ -21,8 +21,8 @@ URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel >= 0.4
-BuildRequires:	dbus-glib-devel >= 0.30
-BuildRequires:	hal-devel >= 0.5.0
+BuildRequires:	dbus-glib-devel >= 0.71
+BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
@@ -31,7 +31,7 @@ BuildRequires:	sysfsutils-devel >= 1.3.0-3
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
-Requires:	hal >= 0.5.0
+Requires:	hal >= 0.5.7.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,8 +62,8 @@ Summary(pl):	Pliki nag³ówkowe biblioteki powersave
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	cpufrequtils-devel >= 0.4
-Requires:	dbus-devel >= 0.30
-Requires:	hal-devel >= 0.5.0
+Requires:	dbus-devel >= 0.71
+Requires:	hal-devel >= 0.5.7.1
 Requires:	sysfsutils-devel >= 1.3.0-3
 
 %description devel
@@ -152,10 +152,11 @@ fi
 %dir %{_libdir}/powersave
 %dir %{_libdir}/powersave/scripts
 %attr(755,root,root) %{_libdir}/powersave/do_*
+%attr(755,root,root) %{_libdir}/powersave/myecho
+%attr(755,root,root) %{_libdir}/powersave/powersave-notify
 %attr(755,root,root) %{_libdir}/powersave/scripts/*
 %attr(755,root,root) %{_libdir}/powersave/setDefaultTrippoints.sh
 %attr(755,root,root) %{_libdir}/powersave/wttyhx
-%attr(755,root,root) %{_libdir}/powersave/myecho
 %{_mandir}/man8/powersave*.8*
 
 %files libs
