@@ -22,10 +22,7 @@
 ACPI_EVENT_FILE="/var/run/acpid.socket"
 GOVS="ondemand powersave performance userspace"
 
-RETVAL=0
-# See how we were called.
-case "$1" in
-  start)
+start() {
 	# Load default cpufreq module
 	if is_yes "$CPUFREQ_ENABLED"; then
 	    if [ -n "$CPUFREQD_MODULE" ]; then
@@ -49,8 +46,9 @@ case "$1" in
 	else
 		msg_already_running powersave
 	fi
-	;;
-  stop)
+}
+
+stop() {
 	# Stop daemons.
 	if [ -f /var/lock/subsys/powersave ]; then
 		msg_stopping powersave
@@ -59,6 +57,16 @@ case "$1" in
 	else
 		msg_not_running powersave
 	fi
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
 	;;
   reload|force-reload)
 	if [ -f /var/lock/subsys/powersave ]; then
@@ -66,14 +74,13 @@ case "$1" in
 		killproc powersaved -HUP
 		RETVAL=$?
 	else
-		msg_not_running powersave >&2
+		msg_not_running powersave
 		exit 7
 	fi
 	;;
   restart)
-	$0 stop
-	$0 start
-	exit $?
+	stop
+	start
 	;;
   status)
 	status powersaved
