@@ -4,7 +4,7 @@
 # - do something with contrib scripts
 #
 Summary:	Powermanagment daemon
-Summary(pl):	Demon zarz±dzania energi±
+Summary(pl.UTF-8):   Demon zarzƒÖdzania energiƒÖ
 Name:		powersave
 Version:	0.14.0
 Release:	2
@@ -39,26 +39,26 @@ The powersave package provides global power management tasks.
 It supports battery monitoring, userspace workarounds for proper
 suspend/standby functionality and more.
 
-%description -l pl
-Paczka powersave ∂wiadczy globalne us≥ugi zarz±dzania energi±.
-Wspiera monitorowanie stanu baterii, prowizorycznie rozwi±zuje
-problemy usypiania/wstrzymywania w przestrzeni uøytkownika
+%description -l pl.UTF-8
+Paczka powersave ≈õwiadczy globalne us≈Çugi zarzƒÖdzania energiƒÖ.
+Wspiera monitorowanie stanu baterii, prowizorycznie rozwiƒÖzuje
+problemy usypiania/wstrzymywania w przestrzeni u≈ºytkownika
 i inne.
 
 %package libs
 Summary:	Powersave libraries
-Summary(pl):	Biblioteki powersave
+Summary(pl.UTF-8):   Biblioteki powersave
 Group:		Libraries
 
 %description libs
 Powersave libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki powersave.
 
 %package devel
 Summary:	Header files for powersave library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki powersave
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki powersave
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	cpufrequtils-devel >= 0.4
@@ -70,19 +70,19 @@ Requires:	sysfsutils-devel >= 1.3.0-3
 This is the package containing header files for powersave
 libraries.
 
-%description devel -l pl
-Paczka ta zawiera pliki nag≥Ûwkowe dla bibliotek powersave.
+%description devel -l pl.UTF-8
+Paczka ta zawiera pliki nag≈Ç√≥wkowe dla bibliotek powersave.
 
 %package static
 Summary:	Static powersave libraries
-Summary(pl):	Biblioteki statyczne powersave
+Summary(pl.UTF-8):   Biblioteki statyczne powersave
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static powersave library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki powersave.
 
 %prep
