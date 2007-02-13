@@ -4,7 +4,7 @@
 # - do something with contrib scripts
 #
 Summary:	Powermanagment daemon
-Summary(pl.UTF-8):   Demon zarządzania energią
+Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
 Version:	0.14.0
 Release:	2
@@ -47,7 +47,7 @@ i inne.
 
 %package libs
 Summary:	Powersave libraries
-Summary(pl.UTF-8):   Biblioteki powersave
+Summary(pl.UTF-8):	Biblioteki powersave
 Group:		Libraries
 
 %description libs
@@ -58,7 +58,7 @@ Biblioteki powersave.
 
 %package devel
 Summary:	Header files for powersave library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki powersave
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki powersave
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	cpufrequtils-devel >= 0.4
@@ -75,7 +75,7 @@ Paczka ta zawiera pliki nagłówkowe dla bibliotek powersave.
 
 %package static
 Summary:	Static powersave libraries
-Summary(pl.UTF-8):   Biblioteki statyczne powersave
+Summary(pl.UTF-8):	Biblioteki statyczne powersave
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
