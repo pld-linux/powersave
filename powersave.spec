@@ -31,6 +31,7 @@ BuildRequires:	sysfsutils-devel >= 1.3.0-3
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	acpid
+Requires:	hal >= 0.5.7.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
