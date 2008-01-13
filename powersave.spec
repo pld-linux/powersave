@@ -7,7 +7,7 @@ Summary:	Powermanagment daemon
 Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
 Version:	0.15.11
-Release:	3
+Release:	4
 Epoch:		0
 License:	GPL
 Group:		Daemons
@@ -18,6 +18,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-ipw2200.patch
 Patch1:		%{name}-lib.patch
+Patch2:		%{name}-polkit.patch
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,6 +92,7 @@ Statyczne biblioteki powersave.
 %setup -q
 #%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 # translations disabled (terrible mess, see TODO)
 sed -i -e 's|translations||' Makefile.am
 
