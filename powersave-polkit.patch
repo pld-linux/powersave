@@ -1,0 +1,61 @@
+diff -urN powersave-0.15.11.org/daemon/pm_interface.cpp powersave-0.15.11/daemon/pm_interface.cpp
+--- powersave-0.15.11.org/daemon/pm_interface.cpp	2007-03-27 13:53:38.000000000 +0200
++++ powersave-0.15.11/daemon/pm_interface.cpp	2008-01-13 18:47:48.722054981 +0100
+@@ -475,9 +475,7 @@
+ 		return false;
+ 	}
+ 
+-	if (liblazy_polkit_is_user_allowed_by_uid(getuid(),
+-						  "hal-power-hibernate",
+-						  NULL) != 1)
++	if (liblazy_hal_is_caller_privileged("hal-power-hibernate") != 1)
+ 		return false;
+ 	else if (sendSleepRequest("Hibernate", DBUS_TYPE_INVALID)) {
+ 				 pDebug(DBG_ERR, "Could not send suspend to disk request to HAL\n");
+@@ -499,9 +497,7 @@
+ 
+ 	int wake_up = 0;
+ 
+-	if (liblazy_polkit_is_user_allowed_by_uid(getuid(),
+-						  "hal-power-suspend",
+-						  NULL) != 1)
++	if (liblazy_hal_is_caller_privileged("hal-power-suspend") != 1)
+ 		return false;
+ 	else if (sendSleepRequest("Suspend",
+ 				    DBUS_TYPE_INT32,
+diff -urN powersave-0.15.11.org/user_binary/powersave.cpp powersave-0.15.11/user_binary/powersave.cpp
+--- powersave-0.15.11.org/user_binary/powersave.cpp	2007-03-27 13:53:36.000000000 +0200
++++ powersave-0.15.11/user_binary/powersave.cpp	2008-01-13 18:48:21.430407294 +0100
+@@ -632,9 +632,7 @@
+ 			 ret = -1;
+ 		 } else {
+ 			 int wake_up = 0;
+-			 if (liblazy_polkit_is_user_allowed_by_uid(getuid(),
+-								   "hal-power-suspend",
+-								   NULL) != 1)
++			 if (liblazy_hal_is_caller_privileged("hal-power-suspend") != 1)
+ 				 privilege_error("hal-power-suspend");
+ 			 else if (send_sleep_request("Suspend",
+ 						     DBUS_TYPE_INT32,
+@@ -654,9 +652,7 @@
+ 			 printf("Standby is not supported.\n");
+ 			 ret = -1;
+ 		 } else {
+-			 if (liblazy_polkit_is_user_allowed_by_uid(getuid(),
+-								   "hal-power-standby",
+-								   NULL) != 1)
++			 if (liblazy_hal_is_caller_privileged("hal-power-standby") != 1)
+ 				 privilege_error("hal-power-standby");
+ 			 else if (send_sleep_request("Standby", DBUS_TYPE_INVALID)) {
+ 				 fprintf(stderr, "Could not send standby request to HAL\n");
+@@ -673,9 +669,7 @@
+ 			 printf("Suspend to disk is not supported.\n");
+ 			 ret = -1;
+ 		 } else {
+-			 if (liblazy_polkit_is_user_allowed_by_uid(getuid(),
+-								   "hal-power-hibernate",
+-								   NULL) != 1)
++			 if (liblazy_hal_is_caller_privileged("hal-power-hibernate") != 1)
+ 				 privilege_error("hal-power-hibernate");
+ 
+ 			 else if (send_sleep_request("Hibernate", DBUS_TYPE_INVALID)) {
