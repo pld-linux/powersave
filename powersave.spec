@@ -7,7 +7,7 @@ Summary:	Powermanagment daemon
 Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
 Version:	0.15.11
-Release:	2
+Release:	3
 Epoch:		0
 License:	GPL
 Group:		Daemons
