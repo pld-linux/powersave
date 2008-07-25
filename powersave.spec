@@ -6,19 +6,18 @@
 Summary:	Powermanagment daemon
 Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
-Version:	0.15.11
-Release:	4
+Version:	0.15.20
+Release:	1
 Epoch:		0
 License:	GPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/powersave/%{name}-%{version}.tar.bz2
-# Source0-md5:	f06e9e33f8d659fc044fdc6efbfbad64
+# Source0-md5:	8c14df7f3e477ac8c1d5b955f01dcfe6
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-ipw2200.patch
 Patch1:		%{name}-lib.patch
-Patch2:		%{name}-polkit.patch
 URL:		http://forge.novell.com/modules/xfmod/project/?powersave
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -92,7 +91,6 @@ Statyczne biblioteki powersave.
 %setup -q
 #%patch0 -p1
 %patch1 -p1
-%patch2 -p1
 # translations disabled (terrible mess, see TODO)
 sed -i -e 's|translations||' Makefile.am
 
@@ -120,6 +118,8 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersaved
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/powersave
 
 rm -rf $RPM_BUILD_ROOT/etc/init.d
+rm $RPM_BUILD_ROOT{%{_libdir}/powersave/rcpowersaved,%{_sbindir}/rcpowersaved}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
