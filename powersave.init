@@ -25,15 +25,15 @@ GOVS="ondemand powersave performance userspace"
 start() {
 	# Load default cpufreq module
 	if is_yes "$CPUFREQ_ENABLED"; then
-	    if [ -n "$CPUFREQD_MODULE" ]; then
-		if  [ ! -d /sys/devices/system/cpu/cpu0/cpufreq ]; then
-            	    _modprobe $CPUFREQD_MODULE $CPUFREQD_MODULE_OPTS
-		    # Load available governors
-		    for i in $GOVS; do
-			modprobe -q cpufreq_$i
-		    done
+		if [ -n "$CPUFREQD_MODULE" ]; then
+			if [ ! -d /sys/devices/system/cpu/cpu0/cpufreq ]; then
+				_modprobe $CPUFREQD_MODULE $CPUFREQD_MODULE_OPTS
+				# Load available governors
+				for i in $GOVS; do
+					modprobe -q cpufreq_$i
+				done
+			fi
 		fi
-    	    fi
 	fi
 	
 	# Start daemons.
