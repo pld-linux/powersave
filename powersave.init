@@ -43,7 +43,7 @@ start() {
 	
 	# Start daemons.
 	msg_starting "Powersaved"
-	daemon powersaved -d -f $ACPI_EVENT_FILE $PROGRAM_ARGS
+	daemon /usr/sbin/powersaved -d -f $ACPI_EVENT_FILE $PROGRAM_ARGS
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/powersave
 }
