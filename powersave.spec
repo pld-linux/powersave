@@ -1,4 +1,3 @@
-# 
 # TODO:
 # - fix bashizms in po/Makefile.am
 # - do something with contrib scripts
@@ -7,11 +6,11 @@ Summary:	Powermanagment daemon
 Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
 Version:	0.15.20
-Release:	1
+Release:	2
 Epoch:		0
 License:	GPL
 Group:		Daemons
-Source0:	http://dl.sourceforge.net/powersave/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/powersave/%{name}-%{version}.tar.bz2
 # Source0-md5:	8c14df7f3e477ac8c1d5b955f01dcfe6
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
@@ -37,15 +36,14 @@ Requires:	hal >= 0.5.7.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The powersave package provides global power management tasks.
-It supports battery monitoring, userspace workarounds for proper
+The powersave package provides global power management tasks. It
+supports battery monitoring, userspace workarounds for proper
 suspend/standby functionality and more.
 
 %description -l pl.UTF-8
-Paczka powersave świadczy globalne usługi zarządzania energią.
-Wspiera monitorowanie stanu baterii, prowizorycznie rozwiązuje
-problemy usypiania/wstrzymywania w przestrzeni użytkownika
-i inne.
+Paczka powersave świadczy globalne usługi zarządzania energią. Wspiera
+monitorowanie stanu baterii, prowizorycznie rozwiązuje problemy
+usypiania/wstrzymywania w przestrzeni użytkownika i inne.
 
 %package libs
 Summary:	Powersave libraries
@@ -69,8 +67,7 @@ Requires:	hal-devel >= 0.5.7.1
 Requires:	sysfsutils-devel >= 1.3.0-3
 
 %description devel
-This is the package containing header files for powersave
-libraries.
+This is the package containing header files for powersave libraries.
 
 %description devel -l pl.UTF-8
 Paczka ta zawiera pliki nagłówkowe dla bibliotek powersave.
@@ -144,7 +141,7 @@ fi
 %dir %{_sysconfdir}/powersave
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/powersave/*
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/powersaved
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/powersave.conf
+%config(noreplace) %verify(not md5 mtime size) /etc/dbus-1/system.d/powersave.conf
 
 %dir %{_sysconfdir}/acpi/events.ignore
 %{_sysconfdir}/acpi/events.ignore/events.ignore
