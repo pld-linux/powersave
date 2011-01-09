@@ -7,7 +7,6 @@ Summary(pl.UTF-8):	Demon zarządzania energią
 Name:		powersave
 Version:	0.15.20
 Release:	2
-Epoch:		0
 License:	GPL
 Group:		Daemons
 Source0:	http://downloads.sourceforge.net/powersave/%{name}-%{version}.tar.bz2
@@ -17,7 +16,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-ipw2200.patch
 Patch1:		%{name}-lib.patch
-URL:		http://forge.novell.com/modules/xfmod/project/?powersave
+URL:		http://powersave.sourceforge.net/powersave/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel >= 0.4
@@ -110,13 +109,12 @@ install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig} \
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/powersave
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersaved
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/powersave
+install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/powersave
+cp -a %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/powersaved
+cp -a %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/powersave
 
 rm -rf $RPM_BUILD_ROOT/etc/init.d
 rm $RPM_BUILD_ROOT{%{_libdir}/powersave/rcpowersaved,%{_sbindir}/rcpowersaved}
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
