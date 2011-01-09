@@ -1,0 +1,13 @@
+diff -ur -x .svn -x .git -x .bzr -x CVS powersave-0.15.20//scripts/x_helper_functions powersave-0.15.20-xorg/scripts/x_helper_functions
+--- powersave-0.15.20//scripts/x_helper_functions	2008-02-03 21:47:45.000000000 +0200
++++ powersave-0.15.20-xorg/scripts/x_helper_functions	2011-01-09 14:33:25.126069356 +0200
+@@ -27,7 +27,7 @@
+ # program locations:
+ KDIALOG_BIN=$KDE_BINDIR/kdialog
+ ZENITY_BIN=$GNOME_BINDIR/zenity
+-XMESSAGE_BIN=/usr/X11R6/bin/xmessage
++XMESSAGE_BIN=/usr/bin/xmessage
+ 
+ # this fixes an obscure bug if you restart powersaved from an root terminal
+ # that has access to the X server. 
+Only in powersave-0.15.20-xorg/scripts: x_helper_functions~

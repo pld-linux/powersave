@@ -16,6 +16,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-ipw2200.patch
 Patch1:		%{name}-lib.patch
+Patch2:		xorg-paths.patch
 URL:		http://powersave.sourceforge.net/powersave/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,6 +88,7 @@ Statyczne biblioteki powersave.
 %setup -q
 #%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 # translations disabled (terrible mess, see TODO)
 sed -i -e 's|translations||' Makefile.am
 
