@@ -87,8 +87,8 @@ Statyczne biblioteki powersave.
 %prep
 %setup -q
 #%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 # translations disabled (terrible mess, see TODO)
 sed -i -e 's|translations||' Makefile.am
 
